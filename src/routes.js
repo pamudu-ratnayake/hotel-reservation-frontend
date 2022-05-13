@@ -5,6 +5,9 @@ import Register from "views/examples/Register.js";
 import Login from "views/examples/Login.js";
 import Tables from "views/examples/Tables.js";
 import Icons from "views/examples/Icons.js";
+import ReserveTaxi from "./views/examples/TaxiReservation/ReserveTaxi.js"
+import TrackTaxi from './views/examples/TaxiReservation/TaxiTracking'
+import MyTaxiReservations from './views/examples/TaxiReservation/MyTaxiReservations.js'
 
 var routes = [
   {
@@ -40,6 +43,27 @@ var routes = [
     name: "Tables",
     icon: "ni ni-bullet-list-67 text-red",
     component: Tables,
+    layout: "/admin",
+  },
+  {
+    path: "/addtaxi",
+    name: "Reserve Taxi",
+    icon: "ni ni-bullet-list-67 text-red",
+    component: ReserveTaxi,
+    layout: "/admin",
+  },
+  {
+    path: "/taxitracking",
+    name: "Track Taxi",
+    icon: "ni ni-bullet-list-67 text-red",
+    component: TrackTaxi,
+    layout: "/admin",
+  },
+  {
+    path: "/mytaxireservations",
+    name: "My Taxi Reservations",
+    icon: "ni ni-bullet-list-67 text-red",
+    component: MyTaxiReservations,
     layout: "/admin",
   },
   {
