@@ -22,6 +22,7 @@ import DisplayReservations from "views/reservationInformation/DisplayReservation
 import ViewDisplayReservations from "views/reservationInformation/ViewReservationInformation";
 import UpdateReservationInformation from "views/reservationInformation/UpdateReservationInformation";
 import HotelDashboard from "views/HotelDashboard";
+import Payment from "./views/examples/Payment/Payment.js"
 
 var routes = [
   {
@@ -108,6 +109,13 @@ var routes = [
 		component: HotelDashboard,
 		layout: "/hotel",
 	},
+  {
+    path: "/payment",
+    name: "Payment",
+    icon: "ni ni-bullet-list-67 text-red",
+    component: Payment,
+    layout: "/admin",
+  },
   {
     path: "/login",
     name: "Login",
