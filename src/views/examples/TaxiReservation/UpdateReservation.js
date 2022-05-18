@@ -23,26 +23,19 @@ import {
   import axios from "axios";
   import React, { useEffect, useState, useMemo } from "react";
   import { useHistory } from "react-router";
-  import API from "variables/tokenURL";
-  
-  const phoneRegExp =
-    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+//   import API from "variables/tokenURL";
   
   const validationSchema = Yup.object({
     driver_name: Yup.string().required("Required!"),
     vehicle_type: Yup.string().required("Required!"),
     vehicle_name: Yup.string().required("Required!"),
-    vehicle_no: Yup.string()
-      .matches(phoneRegExp, "Phone Number is not Valid!")
-      .required("Required!")
-      .min(10, "Too short")
-      .max(10, "Too long"),
-      distance: Yup.string().email("Invalid Email!").required("Required!"),
-      driver_con_no: Yup.string().required(),
-      driver_description: Yup.string().required(),
+    vehicle_no: Yup.string().required("Required!"),
+    distance: Yup.string().required("Required!"),
+    driver_con_no: Yup.string().required(),
+    driver_description: Yup.string().required()
   });
   
-  const UpdateTaxiDetails = (props) => {
+  const UpdateTaxiReservation = (props) => {
     console.log("ID is", props.match.params._id);
   
     const [details, setCustomerRequest] = useState(0);
@@ -51,22 +44,22 @@ import {
     const initialValues = {
       enableReinitialize: true,
       validateOnMount: true,
-      _id: details._id,
+    //   _id: details._id,
       driver_name: details.driver_name,
       vehicle_type: details.vehicle_type,
       vehicle_name: details.vehicle_name,
       vehicle_no: details.vehicle_no,
       distance: details.distance,
       driver_con_no: details.driver_con_no,
-      driver_description: details.driver_description,
+      driver_description: details.driver_description
     };
   
   
     const onSubmit = (values) => {
       console.log("form data", values);
-      API
+      axios
         .put(
-          `/taxi/taxidetails/${props.match.params._id}`,
+          `http://localhost:8080/taxi/update-taxidetails/${props.match.params._id}`,
           values
         )
         .then((res) => {
@@ -81,8 +74,8 @@ import {
     };
   
     useEffect(() => {
-      API
-        .get(`/taxi/getOneTaxiDetails/${props.match.params._id}`)
+      axios
+        .get(`http://localhost:8080/taxi/getOneTaxiDetails/${props.match.params._id}`)
         .then((res) => {
           console.log(res);
           setCustomerRequest(res.data);
@@ -102,7 +95,7 @@ import {
   
     return (
       <>
-        <UserHeaderSponsorUpdate />
+        <TaxiReservationHD />
         {/* Page content */}
         <Container className="mt--7" fluid>
           <Row>
@@ -112,7 +105,7 @@ import {
                 <CardHeader className="bg-white border-0">
                   <Row className="align-items-center">
                     <Col xs="8">
-                      <h2 className="mb-0">Update Sponsor Details</h2>
+                      <h2 className="mb-0">Update Taxi Details</h2>
                     </Col>
                   </Row>
                 </CardHeader>
@@ -130,7 +123,7 @@ import {
                             disabled
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
-                            // value={formik.values.driver_name}
+                            // value={formik.values.regNo}
                             defaultValue={details._id}
                           />
                           {formik.touched._id && formik.errors._id ? (
@@ -183,39 +176,20 @@ import {
                         </FormGroup>
                       </Col>
                     </Row>
+                    
                     <Row>
-                      <Col md="12">
+                      <Col md="6">
                         <FormGroup>
-                          <label>Sponsor Type</label>
+                          <label>Phone Number</label>
                           <Input
-                            id="exampleFormControlInput1"
-                            placeholder="Enter Location"
-                            type="select"
+                            placeholder="Event ID"
+                            type="text"
                             name="vehicle_name"
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                             // value={formik.values.vehicle_name}
                             defaultValue={details.vehicle_name}
-                          >
-                            <option> {details.vehicle_name} </option>
-                            <option>Bank</option>
-                            <option>Institute</option>
-                            <option>Clothing & accessories</option>
-                            <option>Telecommunications</option>
-                            <option>Electronics</option>
-                            <option>Food products</option>
-                            <option>Exploration & production</option>
-                            <option>Health care</option>
-                            <option>Hotels</option>
-                            <option>Software</option>
-                            <option>Personal products</option>
-                            <option>Insurance</option>
-                            <option>Engineering</option>
-                            <option>Travel & tourism</option>
-                            <option>Consumer goods, retail</option>
-                            <option>Insurance</option>
-                            <option>Other</option>
-                          </Input>
+                          />
                           {formik.touched.vehicle_name &&
                           formik.errors.vehicle_name ? (
                             <div style={{ color: "red" }}>
@@ -224,13 +198,12 @@ import {
                           ) : null}
                         </FormGroup>
                       </Col>
-                    </Row>
-                    <Row>
                       <Col md="6">
                         <FormGroup>
-                          <label>Phone Number</label>
+                          <label>Email</label>
                           <Input
-                            placeholder="Event ID"
+                            id="exampleFormControlInput1"
+                            placeholder="name@example.com"
                             type="text"
                             name="vehicle_no"
                             onChange={formik.handleChange}
@@ -246,18 +219,19 @@ import {
                           ) : null}
                         </FormGroup>
                       </Col>
-                      <Col md="6">
+                    </Row>
+                    <Row>
+                      <Col>
                         <FormGroup>
-                          <label>Email</label>
+                          <label>Address</label>
                           <Input
                             id="exampleFormControlInput1"
-                            placeholder="name@example.com"
-                            type="email"
+                            placeholder="142, Palm Avenue, Colombo 10 "
+                            type="text"
                             name="distance"
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
-                            // value={formik.values.distance}
-                            defaultValue={details.distance}
+                            value={formik.values.distance}
                           />
                           {formik.touched.distance &&
                           formik.errors.distance ? (
@@ -333,5 +307,5 @@ import {
     );
   };
   
-  export default UpdateTaxiDetails;
+  export default UpdateTaxiReservation;
   

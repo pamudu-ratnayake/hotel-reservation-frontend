@@ -8,6 +8,7 @@ import Icons from "views/examples/Icons.js";
 import ReserveTaxi from "./views/examples/TaxiReservation/ReserveTaxi.js"
 import TrackTaxi from './views/examples/TaxiReservation/TaxiTracking'
 import MyTaxiReservations from './views/examples/TaxiReservation/MyTaxiReservations.js'
+import UpdateTaxiReservation from './views/examples/TaxiReservation/UpdateReservation.js'
 
 var routes = [
   {
@@ -64,6 +65,13 @@ var routes = [
     name: "My Taxi Reservations",
     icon: "ni ni-bullet-list-67 text-red",
     component: MyTaxiReservations,
+    layout: "/admin",
+  },
+  {
+    path: "/updatetaxireservation",
+    name: "Update Taxi Reservation",
+    icon: "ni ni-bullet-list-67 text-red",
+    component: UpdateTaxiReservation,
     layout: "/admin",
   },
   {

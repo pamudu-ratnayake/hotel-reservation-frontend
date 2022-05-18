@@ -34,8 +34,8 @@ import {
     };
   
     useEffect(() => {
-      API
-        .get("/taxi/get-taxidetails")
+      axios
+        .get("http://localhost:8080/taxi/get-taxidetails")
         .then((res) => {
           setPosts(res.data);
           console.log(res.data);
@@ -46,8 +46,8 @@ import {
     }, []);
   
     const deleteCustomer = () => {
-      API
-        .delete(`/taxi/delet-taxidetails/${deleteID}`)
+      axios
+        .delete(`http://localhost:8080/taxi/delet-taxidetails/${deleteID}`)
         .then((res) => {
           console.log(res);
           // this.props.history.push({
@@ -203,14 +203,14 @@ import {
                                 <i className="fas fa-ellipsis-v" />
                               </DropdownToggle>
                               <DropdownMenu className="dropdown-menu-arrow" right>
-                                {/* <Link to={`/admin/Update_Sponsor/${posts._id}`}> */}
+                                <Link to={`/admin/updatetaxireservation/${posts._id}`}>
                                   <DropdownItem
                                     // onClick={(e) => e.preventDefault()}
                                     type="submit"
                                   >
                                     Edit Reservation Details
                                   </DropdownItem>
-                                {/* </Link> */}
+                                </Link>
                                 <DropdownItem
                                   onClick = {function(event){toggleModal("exampleModel"); setDeleteID(posts._id)}}
                                 >
