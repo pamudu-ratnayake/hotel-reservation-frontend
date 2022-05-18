@@ -24,6 +24,7 @@ import UpdateReservationInformation from "views/reservationInformation/UpdateRes
 import HotelDashboard from "views/HotelDashboard";
 import Payment from "./views/examples/Payment/Payment.js"
 
+import CardPaymentMethod from "views/examples/Payment/CardPaymentMethod.js";
 var routes = [
   {
     path: "/index",
@@ -95,6 +96,20 @@ var routes = [
     component: MyTaxiReservations,
     layout: "/admin",
   },
+  // {
+  //   path: "/payment",
+  //   name: "Payment",
+  //   icon: "ni ni-bullet-list-67 text-red",
+  //   component: Payment,
+  //   layout: "/admin",
+  // },
+  // {
+  //   path: "/paymentmodal",
+  //   name: "PaymentModal",
+  //   icon: "ni ni-bullet-list-67 text-red",
+  //   component: PaymentModal,
+  //   layout: "/admin",
+  // },
   {
     path: "/updatetaxireservation",
     name: "Update Taxi Reservation",
@@ -113,7 +128,7 @@ var routes = [
     path: "/payment",
     name: "Payment",
     icon: "ni ni-bullet-list-67 text-red",
-    component: Payment,
+    component: CardPaymentMethod,
     layout: "/admin",
   },
   {
