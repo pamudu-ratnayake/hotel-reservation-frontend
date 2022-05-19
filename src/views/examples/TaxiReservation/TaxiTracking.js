@@ -14,11 +14,11 @@ import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import '../../../assets/css/map.css';
-import '@tomtom-international/web-sdk-maps/dist/maps.css'
+// import '@tomtom-international/web-sdk-maps/dist/maps.css'
 import TaxiReservationHD from "../../../components/Headers/TaxiReservationHD";
 import { useEffect, useState, useRef } from 'react';
-import * as tt from '@tomtom-international/web-sdk-maps';
-import * as ttapi from '@tomtom-international/web-sdk-services';
+// import * as tt from '@tomtom-international/web-sdk-maps';
+// import * as ttapi from '@tomtom-international/web-sdk-services';
 
 export default function TaxiTracking() {
   const mapElement = useRef()

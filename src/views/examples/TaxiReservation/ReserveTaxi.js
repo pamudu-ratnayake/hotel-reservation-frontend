@@ -23,13 +23,13 @@ import TaxiReservationHD from "components/Headers/TaxiReservationHD";
 
 //Validation
 // const validationSchema = Yup.object({
-//   driver_name: Yup.string().required("Required!"),
+//   Pick_up_point: Yup.string().required("Required!"),
+//   Where_to: Yup.string().required("Required!"),
+//   Pich_up_time: Yup.string().required("Required!"),
 //   vehicle_type: Yup.string().required("Required!"),
-//   vehicle_name: Yup.string().required("Required!"),
-//   vehicle_no: Yup.string().required("Required!"),
 //   distance: Yup.string().email("Invalid Email!").required("Required!"),
 //   driver_con_no: Yup.string().required("Required"),
-//   driver_description: Yup.string().required("Required"),
+//   Delivery_notes: Yup.string().required("Required"),
 // });
 
 const ReserveTaxi = () => {
@@ -38,13 +38,13 @@ const ReserveTaxi = () => {
   const initialValues = {
     enableReinitialize: true,
     validateOnMount: true,
-    driver_name: "",
+    Pick_up_point: "",
+    Where_to: "",
+    Pich_up_time: "",
     vehicle_type: "",
-    vehicle_name: "",
-    vehicle_no: "",
     distance: "",
     driver_con_no: "",
-    driver_description: "",
+    Delivery_notes: "",
   };
 
   const onSubmit = (values) => {
@@ -52,13 +52,13 @@ const ReserveTaxi = () => {
     // console.log('files', acceptedFiles);
 
     // let formdata = new FormData();
-    // formdata.append("driver_name", values.driver_name);
+    // formdata.append("Pick_up_point", values.Pick_up_point);
+    // formdata.append("Where_to", values.Where_to);
+    // formdata.append("Pich_up_time", values.Pich_up_time);
     // formdata.append("vehicle_type", values.vehicle_type);
-    // formdata.append("vehicle_name", values.vehicle_name);
-    // formdata.append("vehicle_no", values.vehicle_no);
     // formdata.append("distance", values.distance);
     // formdata.append("driver_con_no", values.driver_con_no);
-    // formdata.append("driver_description", values.driver_description);
+    // formdata.append("Delivery_notes", values.Delivery_notes);
     // formdata.append("file", acceptedFiles[0]);
 
     axios
@@ -75,8 +75,8 @@ const ReserveTaxi = () => {
         console.log(error);
       });
 
-    //   alert("");
-    // window.location.reload(false);
+      alert("");
+    window.location.reload(false);
   };
 
   const formik = useFormik({
@@ -106,31 +106,75 @@ const ReserveTaxi = () => {
                   <Row>
                     <Col md="6">
                       <FormGroup>
-                        <label>driver Name</label>
+                        <label>Pick up point</label>
                         <Input
                           className="h5"
                           id="exampleFormControlInput1"
                           placeholder="reg000123456"
                           type="text"
-                          name="driver_name"
+                          name="Pick_up_point"
                           onChange={formik.handleChange}
                           onBlur={formik.handleBlur}
-                          value={formik.values.driver_name}
+                          value={formik.values.Pick_up_point}
                         />
-                        {formik.touched.driver_name &&
-                        formik.errors.driver_name ? (
+                        {formik.touched.Pick_up_point &&
+                        formik.errors.Pick_up_point ? (
                           <div style={{ color: "red" }}>
-                            {formik.errors.driver_name}
+                            {formik.errors.Pick_up_point}
                           </div>
                         ) : null}
                       </FormGroup>
                     </Col>
                     <Col md="6">
                       <FormGroup>
-                        <label>Vehicle Type</label>
+                        <label>Where to</label>
                         <Input
                           className="h5"
                           placeholder="ABC (pvt).Ltd"
+                          type="text"
+                          name="Where_to"
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          value={formik.values.Where_to}
+                        />
+                        {formik.touched.Where_to &&
+                        formik.errors.Where_to ? (
+                          <div style={{ color: "red" }}>
+                            {formik.errors.Where_to}
+                          </div>
+                        ) : null}
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <FormGroup>
+                        <label>Pich up time</label>
+                        <Input
+                          className="h5-black"
+                          id="exampleFormControlInput1"
+                          placeholder="142, Palm Avenue, Colombo 10 "
+                          type="text"
+                          name="Pich_up_time"
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          value={formik.values.Pich_up_time}
+                        />
+                        {formik.touched.Pich_up_time &&
+                        formik.errors.Pich_up_time ? (
+                          <div style={{ color: "red" }}>
+                            {formik.errors.Pich_up_time}
+                          </div>
+                        ) : null}
+                      </FormGroup>
+                    </Col>
+                    <Col>
+                      <FormGroup>
+                        <label>Vehicle type</label>
+                        <Input
+                          className="h5-black"
+                          id="exampleFormControlInput1"
+                          placeholder="142, Palm Avenue, Colombo 10 "
                           type="text"
                           name="vehicle_type"
                           onChange={formik.handleChange}
@@ -149,65 +193,21 @@ const ReserveTaxi = () => {
                   <Row>
                     <Col>
                       <FormGroup>
-                        <label>Vehicle Name</label>
-                        <Input
-                          className="h5-black"
-                          id="exampleFormControlInput1"
-                          placeholder="142, Palm Avenue, Colombo 10 "
-                          type="text"
-                          name="vehicle_name"
-                          onChange={formik.handleChange}
-                          onBlur={formik.handleBlur}
-                          value={formik.values.vehicle_name}
-                        />
-                        {formik.touched.vehicle_name &&
-                        formik.errors.vehicle_name ? (
-                          <div style={{ color: "red" }}>
-                            {formik.errors.vehicle_name}
-                          </div>
-                        ) : null}
-                      </FormGroup>
-                    </Col>
-                    <Col>
-                      <FormGroup>
-                        <label>Vehicle No</label>
-                        <Input
-                          className="h5-black"
-                          id="exampleFormControlInput1"
-                          placeholder="142, Palm Avenue, Colombo 10 "
-                          type="text"
-                          name="vehicle_no"
-                          onChange={formik.handleChange}
-                          onBlur={formik.handleBlur}
-                          value={formik.values.vehicle_no}
-                        />
-                        {formik.touched.vehicle_no &&
-                        formik.errors.vehicle_no ? (
-                          <div style={{ color: "red" }}>
-                            {formik.errors.vehicle_no}
-                          </div>
-                        ) : null}
-                      </FormGroup>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                      <FormGroup>
-                        <label>Driver Description</label>
+                        <label>Delivery notes</label>
                         <Input
                           className="h5"
                           id="exampleFormControlInput1"
                           placeholder="reg000123456"
                           type="text"
-                          name="driver_description"
+                          name="Delivery_notes"
                           onChange={formik.handleChange}
                           onBlur={formik.handleBlur}
-                          value={formik.values.driver_description}
+                          value={formik.values.Delivery_notes}
                         />
-                        {formik.touched.driver_description &&
-                        formik.errors.driver_description ? (
+                        {formik.touched.Delivery_notes &&
+                        formik.errors.Delivery_notes ? (
                           <div style={{ color: "red" }}>
-                            {formik.errors.driver_description}
+                            {formik.errors.Delivery_notes}
                           </div>
                         ) : null}
                       </FormGroup>
