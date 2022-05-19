@@ -21,6 +21,7 @@ import AddReservationInformation from "views/reservationInformation/AddReservati
 import DisplayReservations from "views/reservationInformation/DisplayReservations";
 import ViewDisplayReservations from "views/reservationInformation/ViewReservationInformation";
 import UpdateReservationInformation from "views/reservationInformation/UpdateReservationInformation";
+import HotelDashboard from "views/HotelDashboard";
 
 var routes = [
   {
@@ -100,6 +101,13 @@ var routes = [
     component: UpdateTaxiReservation,
     layout: "/admin",
   },
+  {
+		path: "/hotel-index",
+		name: "Dashboard",
+		icon: "ni ni-tv-2 text-primary",
+		component: HotelDashboard,
+		layout: "/hotel",
+	},
   {
     path: "/login",
     name: "Login",
