@@ -15,6 +15,13 @@ import ViewReservation from "views/ViewReservation";
 import TravelerList from "views/TravelerList";
 import Login from "views/examples/auth/Login";
 import Register from "views/examples/auth/Register";
+// import Register from "views/examples/Register.js";
+// import Login from "views/examples/Login.js";
+import AddReservationInformation from "views/reservationInformation/AddReservationInformation";
+import DisplayReservations from "views/reservationInformation/DisplayReservations";
+import ViewDisplayReservations from "views/reservationInformation/ViewReservationInformation";
+import UpdateReservationInformation from "views/reservationInformation/UpdateReservationInformation";
+import HotelDashboard from "views/HotelDashboard";
 
 var routes = [
   {
@@ -39,31 +46,31 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/icons",
-    name: "Icons",
+    path: "/addreservationinformation",
+    name: "AddReservationInformation",
     icon: "ni ni-planet text-blue",
-    component: Icons,
+    component: AddReservationInformation,
     layout: "/admin",
   },
   {
-    path: "/maps",
-    name: "Maps",
+    path: "/displayreservation",
+    name: "DisplayReservations",
     icon: "ni ni-pin-3 text-orange",
-    component: Maps,
+    component: DisplayReservations,
     layout: "/admin",
   },
   {
-    path: "/user-profile",
-    name: "User Profile",
+    path: "/viewreservation/:_id",
+    name: "ViewDisplayReservations",
     icon: "ni ni-single-02 text-yellow",
-    component: Profile,
+    component: ViewDisplayReservations,
     layout: "/admin",
   },
   {
-    path: "/tables",
-    name: "Tables",
+    path: "/updatereservation/:_id",
+    name: "UpdateReservationInformation",
     icon: "ni ni-bullet-list-67 text-red",
-    component: Tables,
+    component: UpdateReservationInformation,
     layout: "/admin",
   },
   {
@@ -94,6 +101,13 @@ var routes = [
     component: UpdateTaxiReservation,
     layout: "/admin",
   },
+  {
+		path: "/hotel-index",
+		name: "Dashboard",
+		icon: "ni ni-tv-2 text-primary",
+		component: HotelDashboard,
+		layout: "/hotel",
+	},
   {
     path: "/login",
     name: "Login",
